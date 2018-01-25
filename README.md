@@ -1,10 +1,14 @@
 # dnsmadeeasy
 
+FORKED from the initial work by soniah as I wanted to extend the functionality for terraform
+original caveats still apply, heance soniah's readme is still mostly intact.
+
+
 [![Build
-Status](https://travis-ci.org/soniah/dnsmadeeasy.svg?branch=master)](https://travis-ci.org/soniah/dnsmadeeasy)
-[![Coverage](http://gocover.io/_badge/github.com/soniah/dnsmadeeasy)](http://gocover.io/github.com/soniah/dnsmadeeasy)
-[![GoDoc](https://godoc.org/github.com/soniah/dnsmadeeasy?status.png)](http://godoc.org/github.com/soniah/dnsmadeeasy)
-https://github.com/soniah/dnsmadeeasy v1.1
+Status](https://travis-ci.org/sjones-sot/dnsmadeeasy.svg?branch=master)](https://travis-ci.org/sjones-sot/dnsmadeeasy)
+[![Coverage](http://gocover.io/_badge/github.com/sjones-sot/dnsmadeeasy)](http://gocover.io/github.com/sjones-sot/dnsmadeeasy)
+[![GoDoc](https://godoc.org/github.com/sjones-sot/dnsmadeeasy?status.png)](http://godoc.org/github.com/sjones-sot/dnsmadeeasy)
+https://github.com/sjones-sot/dnsmadeeasy v1.1
 
 This package provides the `dnsmadeeasy` package which offers an
 interface to the [DNSMadeEasy](http://www.dnsmadeeasy.com/) API.
@@ -20,11 +24,11 @@ Sonia Hamilton, sonia@snowfrog.net, http://blog.snowfrog.net.
 
 ## Documentation
 
-The full documentation is available on [Godoc](http://godoc.org/github.com/soniah/dnsmadeeasy)
+The full documentation is available on [Godoc](http://godoc.org/github.com/sjones-sot/dnsmadeeasy)
 
 ## Related Projects
 
-* https://github.com/soniah/terraform-provider-dme
+* https://github.com/sjones-sot/terraform-provider-dme
 * https://github.com/hashicorp/terraform
 * https://github.com/pearkes/dnsimple
 
