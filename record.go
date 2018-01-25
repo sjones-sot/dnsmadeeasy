@@ -56,15 +56,18 @@ const (
 	destroy
 )
 
+//type reqParams
+//{}
+
 func (rt requestType) endpoint(domainID string, recordID string, endpoint string) (result string) {
+	if endpoint == "" {
+		endpoint = "records"
+	}
 	switch rt {
 	case create, retrieve:
-		result = fmt.Sprintf("/dns/managed/%s/$s/", domainID, endpoint)
+		result = fmt.Sprintf("/dns/managed/%s/%s/", domainID, endpoint)
 	case update, destroy:
-		if endpoint == "" {
-			endpoint = "records"
-		}
-		result = fmt.Sprintf("/dns/managed/%s/$s/%s/", domainID, endpoint, recordID)
+		result = fmt.Sprintf("/dns/managed/%s/%s/%s/", domainID, endpoint, recordID)
 	}
 	return result
 }

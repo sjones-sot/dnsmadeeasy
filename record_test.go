@@ -35,10 +35,10 @@ func (s *S) TearDownTest(c *C) {
 }
 
 func (s *S) Test_records_endpoint(c *C) {
-	c.Assert(create.endpoint("1","", ""), Equals, "/dns/managed/1/records/")
-	c.Assert(retrieve.endpoint("1","", ""), Equals, "/dns/managed/1/records/")
+	c.Assert(create.endpoint("1","", "records"), Equals, "/dns/managed/1/records/")
+	c.Assert(retrieve.endpoint("1","", "records"), Equals, "/dns/managed/1/records/")
 	c.Assert(update.endpoint("1","2", "records"), Equals, "/dns/managed/1/records/2/")
-	c.Assert(destroy.endpoint("1","2", "records",), Equals, "/dns/managed/1/records/2/")
+	c.Assert(destroy.endpoint("1","2", "records"), Equals, "/dns/managed/1/records/2/")
 }
 
 func (s *S) Test_CreateRecordGood(c *C) {
