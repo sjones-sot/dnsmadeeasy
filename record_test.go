@@ -3,7 +3,7 @@ package dnsmadeeasy
 import (
 	"fmt"
 	. "github.com/motain/gocheck"
-	"github.com/soniah/dnsmadeeasy/testutil"
+	"github.com/sjones-sot/dnsmadeeasy/testutil"
 	"testing"
 )
 
@@ -34,11 +34,11 @@ func (s *S) TearDownTest(c *C) {
 	testServer.Flush()
 }
 
-func (s *S) Test_endpoint(c *C) {
-	c.Assert(create.endpoint("1", ""), Equals, "/dns/managed/1/records/")
-	c.Assert(retrieve.endpoint("1", ""), Equals, "/dns/managed/1/records/")
-	c.Assert(update.endpoint("1", "2"), Equals, "/dns/managed/1/records/2/")
-	c.Assert(destroy.endpoint("1", "2"), Equals, "/dns/managed/1/records/2/")
+func (s *S) Test_records_endpoint(c *C) {
+	c.Assert(create.endpoint("1", "records", ""), Equals, "/dns/managed/1/records/")
+	c.Assert(retrieve.endpoint("1", "records", ""), Equals, "/dns/managed/1/records/")
+	c.Assert(update.endpoint("1", "records", "2"), Equals, "/dns/managed/1/records/2/")
+	c.Assert(destroy.endpoint("1", "records", "2"), Equals, "/dns/managed/1/records/2/")
 }
 
 func (s *S) Test_CreateRecordGood(c *C) {

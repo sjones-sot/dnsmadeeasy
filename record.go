@@ -56,12 +56,15 @@ const (
 	destroy
 )
 
-func (rt requestType) endpoint(domainID string, recordID string) (result string) {
+func (rt requestType) endpoint(domainID string, recordID string, endpoint string) (result string) {
+	if endpoint == "" {
+		endpoint = "records"
+	}
 	switch rt {
 	case create, retrieve:
-		result = fmt.Sprintf("/dns/managed/%s/records/", domainID)
+		result = fmt.Sprintf("/dns/managed/%s/$s/", domainID, endpoint)
 	case update, destroy:
-		result = fmt.Sprintf("/dns/managed/%s/records/%s/", domainID, recordID)
+		result = fmt.Sprintf("/dns/managed/%s/$s/%s/", domainID, endpoint, recordID)
 	}
 	return result
 }
@@ -71,7 +74,7 @@ func (rt requestType) endpoint(domainID string, recordID string) (result string)
 // CreateRecord creates a DNS record on DNSMadeEasy
 func (c *Client) CreateRecord(domainID string, cr map[string]interface{}) (string, error) {
 
-	path := create.endpoint(domainID, "")
+	path := create.endpoint(domainID, "", "")
 	buf := bytes.NewBuffer(nil)
 	enc := json.NewEncoder(buf)
 	if err := enc.Encode(cr); err != nil {
@@ -103,7 +106,7 @@ func (c *Client) CreateRecord(domainID string, cr map[string]interface{}) (strin
 // error.
 func (c *Client) ReadRecord(domainID string, recordID string) (*Record, error) {
 	body := bytes.NewBuffer(nil)
-	path := retrieve.endpoint(domainID, recordID)
+	path := retrieve.endpoint(domainID, recordID, "")
 	req, err := c.NewRequest("GET", path, body, "")
 	if err != nil {
 		return nil, err
@@ -155,7 +158,7 @@ func (c *Client) UpdateRecord(domainID string, recordID string, cr map[string]in
 		return "", err
 	}
 
-	path := update.endpoint(domainID, recordID)
+	path := update.endpoint(domainID, "records", recordID)
 	req, err := c.NewRequest("PUT", path, buf, "")
 	if err != nil {
 		return "", err
@@ -175,7 +178,7 @@ func (c *Client) UpdateRecord(domainID string, recordID string, cr map[string]in
 // the Record was succesfully destroyed.
 func (c *Client) DeleteRecord(domainID string, recordID string) error {
 	body := bytes.NewBuffer(nil)
-	path := destroy.endpoint(domainID, recordID)
+	path := destroy.endpoint(domainID, recordID, "")
 	req, err := c.NewRequest("DELETE", path, body, "")
 	if err != nil {
 		return err
